@@ -1,4 +1,4 @@
-package org.laser.pretty;
+package org.laser;
 
 import java.util.function.Function;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package org.laser.pretty;
+package org.laser;
 
 public class Pretty {
     public static final String ANSI_RESET = "\u001B[0m";
