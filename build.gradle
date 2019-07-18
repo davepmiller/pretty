@@ -8,19 +8,18 @@ repositories {
     jcenter()
 }
 
-def getVersionName() {
+def getVersionName = { ->
     def stdout = new ByteArrayOutputStream()
     exec {
         commandLine 'git', 'describe', '--tags'
         standardOutput = stdout
+        ignoreExitValue = true
     }
+
     return stdout.toString().trim()
 }
 
-def VERSION = getVersionName()
-
-group 'org.laser'
-version VERSION
+version getVersionName()
 
 dependencies {
     testImplementation 'junit:junit:4.12'
@@ -47,7 +46,7 @@ publishing {
             from components.java
             groupId 'org.laser'
             artifactId 'pretty'
-            version VERSION
+            version getVersionName()
         }
     }
 }
