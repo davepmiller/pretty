@@ -1,4 +1,4 @@
-package org.laser;
+package org.laser.pretty;
 
 public class Pretty {
     public static final String ANSI_RESET = "\u001B[0m";
@@ -50,7 +50,7 @@ public class Pretty {
         }
 
         private Builder color(String c) {
-            s = s + c;
+            s = c + s;
             return this;
         }
 
