@@ -1,25 +1,15 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id "com.jfrog.bintray" version "1.8.4"
+    id 'com.jfrog.bintray' version '1.8.4'
+    id 'com.palantir.git-version' version '0.11.0'
 }
 
 repositories {
     jcenter()
 }
 
-def getVersionName = { ->
-    def stdout = new ByteArrayOutputStream()
-    exec {
-        commandLine 'git', 'describe', '--tags'
-        standardOutput = stdout
-        ignoreExitValue = true
-    }
-
-    return stdout.toString().trim()
-}
-
-version getVersionName()
+version gitVersion()
 
 dependencies {
     testImplementation 'junit:junit:4.12'
@@ -46,7 +36,7 @@ publishing {
             from components.java
             groupId 'org.laser'
             artifactId 'pretty'
-            version getVersionName()
+            version gitVersion()
         }
     }
 }
